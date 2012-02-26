@@ -28,11 +28,15 @@ FUNCTIONS
         Returns an ordinal equivalent of $number in Tagalog. It accepts the
         following options:
 
-        ika     If set to a true value, ordinal number will be formed by
+        *       ika
+
+                If set to a true value, ordinal number will be formed by
                 prefixing "ika-" to cardinal number. The default is to use
                 "pang-" prefix.
 
-        hypen   Set to a true value to replace spaces between words with
+        *       hypen
+
+                Set to a true value to replace spaces between words with
                 hypens.
 
 REFERENCES

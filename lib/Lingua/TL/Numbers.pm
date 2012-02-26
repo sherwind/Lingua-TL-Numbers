@@ -8,7 +8,7 @@ use integer;
 use base qw(Exporter);
 our @EXPORT_OK = qw(num2tl num2tl_ordinal);
 
-our $VERSION = 0.01;
+our $VERSION = 0.02;
 
 my @CARDINAL_UNITS = (undef, qw(
     isa dalawa tatlo apat lima anim pito walo siyam sampu labing-isa labindalawa
@@ -119,7 +119,7 @@ __END__
 
 =head1 NAME
 
-Lingua::TL::Numbers - Convert number into Tagalog words
+Lingua::TL::Numbers - Convert numbers into Tagalog words
 
 =head1 SYNOPSIS
 
@@ -157,12 +157,12 @@ following options:
 
 =over 8
 
-=item ika
+=item * ika
 
 If set to a true value, ordinal number will be formed by prefixing "ika-"
 to cardinal number. The default is to use "pang-" prefix.
 
-=item hypen
+=item * hypen
 
 Set to a true value to replace spaces between words with hypens.
 
