@@ -10,16 +10,14 @@ our @EXPORT_OK = qw(num2tl num2tl_ordinal);
 
 our $VERSION = 0.01;
 
-my @CARDINAL_UNITS = qw(
-    dummy
+my @CARDINAL_UNITS = (undef, qw(
     isa dalawa tatlo apat lima anim pito walo siyam sampu labing-isa labindalawa
     labintatlo labing-apat labinlima labing-anim labimpito labingwalo labinsiyam
-);
+));
 
-my @CARDINAL_TENS = qw(
-    dummy
+my @CARDINAL_TENS = (undef, qw(
     sampu dalawampu tatlumpu apatnapu limampu animnapu pitumpu walumpu siyamnapu
-);
+));
 
 
 sub _cardinal_thousands {
@@ -29,8 +27,7 @@ sub _cardinal_thousands {
     if    ($word =~ /[aeiou]$/) { $word .= 'ng '  . $suffix }
     elsif ($word =~ /n$/)       { $word .= 'g '   . $suffix }
     else                        { $word .= ' na ' . $suffix }
-
-    return $word . $at . _cardinal($number % $div) if $number % $div;
+    $word .= $at . _cardinal($number % $div) if $number % $div;
     return $word;
 }
 
@@ -41,15 +38,13 @@ sub _cardinal {
 
     if ($number < 100) {
         my $word = $CARDINAL_TENS[$number / 10];
-
-        return $word . "'t " . $CARDINAL_UNITS[$number % 10] if $number % 10;
+        $word .= "'t " . $CARDINAL_UNITS[$number % 10] if $number % 10;
         return $word;
     }
     if ($number < 1000) {
         my $word = _cardinal($number / 100); 
         $word .= $word =~ /[aeiou]$/ ? 'ng daan' : ' na raan';
-
-        return substr($word, 0, -1) . "'t " . _cardinal($number % 100) if $number % 100;
+        $word = substr($word, 0, -1) . "'t " . _cardinal($number % 100) if $number % 100;
         return $word;
     }
 
